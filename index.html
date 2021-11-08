@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather app</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style type="Text/css">
+    /* body{
+        background-color: #cccccc;
+       
+    } */
+    body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  /* background-image:url("/pexels-pixabay-53594"); */
+  background-color:gold;
+  height: 500px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:black;
+  }
+ 
+#meow{
+    background-color:black;
+    color:white;
+}
+#result{
+    background-color:red;
+}
+
+    
+    
+    </style>
+
+</head>
+
+<body>
+     
+         <div class="hero-text">
+    <label>Enter City</label> <br>
+   <div> <input id=Cityname type="text" placeholder="Enter City Name"></div> 
+   <br>
+    <button id="meow" onclick="getweather()">Check</button>
+    
+    <br>
+    <div>
+        <p>TODAY TEMPERAURE IS</p>
+    <p id="result"></p>
+    </div>
+</div>
+    
+    <script>
+        function getweather() {
+            const CityName = document.getElementById("Cityname").value
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${CityName}&appid=363a0329911c1b074081245aae1023c3&units=metric`)
+                .then(function (response) {
+                    console.log(response);
+                    console.log(response.data.main.temp);
+                    document.getElementById("result").innerText= response.data.main.temp;
+                })
+        }
+        
+    </script>
+</body>
+
+</html>
